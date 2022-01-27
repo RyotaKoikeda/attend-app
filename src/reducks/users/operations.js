@@ -1,6 +1,33 @@
-import { signInAction } from "./actions";
+import { signInAction, signOutAction } from "./actions";
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
+
+export const listenAuthState = () => {
+  return async (dispatch) => {
+    return auth.onAuthStateChanged((user) => {
+      if (user) {
+        const uid = user.uid;
+        db.collection("users")
+          .doc(uid)
+          .get()
+          .then((snapshot) => {
+            const data = snapshot.data();
+
+            dispatch(
+              signInAction({
+                isSignedIn: true,
+                role: data.role,
+                uid: uid,
+                username: data.username,
+              })
+            );
+          });
+      } else {
+        dispatch(push("/"));
+      }
+    });
+  };
+};
 
 export const signIn = (email, password) => {
   return async (dispatch) => {
@@ -29,7 +56,7 @@ export const signIn = (email, password) => {
               })
             );
 
-            alert("Sign Inしました");
+            dispatch(push("/attend/edit"));
           });
       }
     });
@@ -74,9 +101,18 @@ export const signUp = (username, email, password, confirmPassword) => {
             .doc(uid)
             .set(userInitialDate)
             .then(() => {
-              dispatch(push("/"));
+              dispatch(push("/attend/edit"));
             });
         }
       });
+  };
+};
+
+export const signOut = () => {
+  return async (dispatch) => {
+    auth.signOut().then(() => {
+      dispatch(signOutAction());
+      dispatch(push("/"));
+    });
   };
 };

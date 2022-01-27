@@ -1,4 +1,7 @@
 const initialState = {
+  staffs: {
+    list: [],
+  },
   users: {
     isSignedIn: false,
     role: "",

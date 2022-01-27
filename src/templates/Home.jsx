@@ -55,9 +55,10 @@ const Home = () => {
           onClick={() => dispatch(signIn(email, password))}
         />
         <div className="module-spacer--medium" />
-        <p onClick={() => dispatch(push("/signup"))}>
-          アカウントをお持ちではない方はこちら
-        </p>
+      </div>
+      <div>
+        <p>メールアドレス admin@gmail.com</p>
+        <p>パスワード admin123</p>
       </div>
     </div>
   );
