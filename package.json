@@ -12,6 +12,7 @@
     "connected-react-router": "^6.9.2",
     "firebase": "^9.6.4",
     "history": "^4.10.1",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
@@ -22,6 +23,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
     "reselect": "^4.1.5",
+    "sass": "^1.38.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

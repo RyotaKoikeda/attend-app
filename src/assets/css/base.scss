@@ -1,0 +1,71 @@
+@import "mixin";
+
+a {
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #888;
+  }
+}
+
+li {
+  list-style-type: none;
+}
+
+body {
+  font-variant-ligatures: none;
+  font-family: "游明朝", "Yu Mincho", "游明朝体", "YuMincho", serif;
+  overflow-x: hidden;
+  color: #232323;
+  font-weight: 500;
+}
+
+img {
+  max-width: 100%;
+}
+
+.none {
+  display: none;
+}
+
+.pc {
+  display: block !important;
+  @include tab {
+    display: none !important;
+  }
+}
+
+.tab {
+  display: none !important;
+  @include tab {
+    display: block !important;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  @include center;
+  padding: 0 40px;
+  @include pc {
+    padding: 0 calc(40vw / (1280 / 100));
+  }
+}
+
+.flex {
+  @include flex;
+}
+
+.flex-low {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-around {
+  @include flex-around;
+}
