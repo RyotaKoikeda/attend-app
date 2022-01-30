@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -15,13 +15,44 @@ const useStyles = makeStyles({
 
 const SelectBox = (props) => {
   const classes = useStyles();
+  const [value, setValue] = useState("");
+
+  const inputDate = (event, id, date) => {
+    let selectId = props.attend[id];
+    let selectDate = { id: date, name: event };
+    if (!selectId.find((v) => v.id === date)) {
+      selectId.push(selectDate);
+    } else {
+      const targetValue = selectId.find((v) => v.id === date);
+      targetValue.name = event;
+    }
+    const targetValue = selectId.find((v) => v.id === date);
+    setValue(targetValue.name);
+    console.log(props.attend);
+  };
+
+  useEffect(() => {
+    let selectId = props.attend[props.staff];
+    if (!selectId) {
+    } else {
+      const targetValue = selectId.find((v) => v.id === props.date);
+      if (targetValue) {
+        setValue(targetValue.name);
+      } else {
+        setValue("");
+      }
+    }
+  }, [props.date]);
+
   return (
     <FormControl className={classes.FormControl}>
       <InputLabel>{props.label}</InputLabel>
       <Select
         required={props.required}
-        value={props.value}
-        onChange={(event) => props.select(event.target.value)}
+        value={value}
+        onChange={(event) =>
+          inputDate(event.target.value, props.staff, props.date)
+        }
       >
         {props.options.map((option) => (
           <MenuItem key={option.id} value={option.id}>

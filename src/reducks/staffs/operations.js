@@ -40,6 +40,7 @@ export const saveStaff = (id, name, images) => {
     const data = {
       images: images,
       name: name,
+      attend: [],
       updated_at: timestamp,
     };
 
