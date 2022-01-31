@@ -13,6 +13,8 @@ export const deleteStaff = (id) => {
         const prevStaffs = getState().staffs.list;
         const nextStaffs = prevStaffs.filter((staff) => staff.id !== id);
         dispatch(deleteStaffsAction(nextStaffs));
+        alert("スタッフを削除しました");
+        window.location.reload();
       });
   };
 };
@@ -20,7 +22,7 @@ export const deleteStaff = (id) => {
 export const fetchStaffs = () => {
   return async (dispatch) => {
     staffsRef
-      .orderBy("updated_at", "desc")
+      .orderBy("created_at", "desc")
       .get()
       .then((snapshots) => {
         const staffList = [];
@@ -33,14 +35,14 @@ export const fetchStaffs = () => {
   };
 };
 
-export const saveStaff = (id, name, images) => {
+export const saveStaff = (id, attend, name, images) => {
   return async (dispatch) => {
     const timestamp = FirebaseTimestamp.now();
 
     const data = {
       images: images,
       name: name,
-      attend: [],
+      attend: attend,
       updated_at: timestamp,
     };
 
@@ -55,10 +57,52 @@ export const saveStaff = (id, name, images) => {
       .doc(id)
       .set(data, { merge: true })
       .then(() => {
-        dispatch(push("/attend/edit"));
+        alert("スタッフを追加しました");
+        dispatch(push("/attend/"));
+        window.location.reload();
       })
       .catch((error) => {
         throw new Error(error);
       });
+  };
+};
+
+export const saveAttend = (id, staffs, attend) => {
+  return async (dispatch) => {
+    const timestamp = FirebaseTimestamp.now();
+
+    const data = [];
+
+    attend.length = id;
+
+    attend.map((value, id) => {
+      data.push({
+        attend: [],
+        updated_at: timestamp,
+      });
+      data[id].attend = value;
+
+      return staffsRef
+        .doc(staffs[id].id)
+        .set(data[id], { merge: true })
+        .then(() => {
+          staffsRef
+            .orderBy("created_at", "desc")
+            .get()
+            .then((snapshots) => {
+              const staffList = [];
+              snapshots.forEach((snapshot) => {
+                const staff = snapshot.data();
+                staffList.push(staff);
+              });
+              dispatch(fetchStaffsAction(staffList));
+            });
+        })
+        .catch((error) => {
+          throw new Error(error);
+        });
+    });
+
+    dispatch(push("/attend/"));
   };
 };

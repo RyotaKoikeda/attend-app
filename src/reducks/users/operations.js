@@ -56,7 +56,7 @@ export const signIn = (email, password) => {
               })
             );
 
-            dispatch(push("/attend/edit"));
+            dispatch(push("/attend/"));
           });
       }
     });
@@ -101,7 +101,7 @@ export const signUp = (username, email, password, confirmPassword) => {
             .doc(uid)
             .set(userInitialDate)
             .then(() => {
-              dispatch(push("/attend/edit"));
+              dispatch(push("/attend/"));
             });
         }
       });

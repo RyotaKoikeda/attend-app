@@ -13,7 +13,8 @@ const StaffEdit = () => {
     id = id.split("/")[1];
   }
 
-  const [name, setName] = useState(""),
+  const [attend, setAttend] = useState([]),
+    [name, setName] = useState(""),
     [images, setImages] = useState([]);
 
   const inputName = useCallback(
@@ -30,8 +31,9 @@ const StaffEdit = () => {
         .get()
         .then((snapshot) => {
           const data = snapshot.data();
-          setImages(data.images);
+          setAttend(data.attend);
           setName(data.name);
+          setImages(data.images);
         });
     }
   }, [id]);
@@ -55,7 +57,7 @@ const StaffEdit = () => {
         <div className="center">
           <PrimaryButton
             label={"商品情報を保存"}
-            onClick={() => dispatch(saveStaff(id, name, images))}
+            onClick={() => dispatch(saveStaff(id, attend, name, images))}
           />
         </div>
       </div>

@@ -40,7 +40,6 @@ const ImageArea = (props) => {
       const fileName = Array.from(crypto.getRandomValues(new Uint32Array(N)))
         .map((n) => S[n % S.length])
         .join("");
-      console.log(fileName);
       const uploadRef = storage.ref("images").child(fileName);
       const uploadTask = uploadRef.put(blob);
 

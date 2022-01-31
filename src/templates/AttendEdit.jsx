@@ -1,9 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StaffCard } from "../components/Staffs";
 import { useDispatch, useSelector } from "react-redux";
-import { push } from "connected-react-router";
-import { signOut } from "../reducks/users/operations";
-import { fetchStaffs } from "../reducks/staffs/operations";
+import { fetchStaffs, saveAttend } from "../reducks/staffs/operations";
 import { getStaffs } from "../reducks/staffs/selectors";
 import moment from "moment";
 import { SelectBox } from "../components/UiKit";
@@ -14,6 +12,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { PrimaryButton } from "../components/UiKit";
 
 const AttendEdit = () => {
   const dispatch = useDispatch();
@@ -64,8 +63,6 @@ const AttendEdit = () => {
     <section>
       <div className="container">
         <h2 className="u-text__headline u-text-center">edit</h2>
-        <p onClick={() => dispatch(push("/staff/edit"))}>スタッフ追加</p>
-        <button onClick={() => dispatch(signOut())}>SIGN OUT</button>
         <div className="p-grid__row"></div>
         <div className="p-grid__row">
           <p onClick={() => setDateId(dateId - 7)}>{"<"}</p>
@@ -77,7 +74,7 @@ const AttendEdit = () => {
               <TableRow>
                 <TableCell></TableCell>
                 {dateList.map((date, id) => (
-                  <TableCell key={id} align="right">
+                  <TableCell key={id} align="center">
                     {date}
                   </TableCell>
                 ))}
@@ -102,6 +99,7 @@ const AttendEdit = () => {
                         <SelectBox
                           attend={attend}
                           staff={staffId}
+                          staffs={staffs}
                           label={"出勤時間"}
                           date={date}
                           required={true}
@@ -114,6 +112,13 @@ const AttendEdit = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        <div className="module-spacer--small" />
+        <div className="center">
+          <PrimaryButton
+            label={"出勤情報を保存"}
+            onClick={() => dispatch(saveAttend(staffs.length, staffs, attend))}
+          />
+        </div>
       </div>
     </section>
   );

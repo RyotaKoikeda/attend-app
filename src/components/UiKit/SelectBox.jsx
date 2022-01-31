@@ -28,7 +28,6 @@ const SelectBox = (props) => {
     }
     const targetValue = selectId.find((v) => v.id === date);
     setValue(targetValue.name);
-    console.log(props.attend);
   };
 
   useEffect(() => {
@@ -42,7 +41,8 @@ const SelectBox = (props) => {
         setValue("");
       }
     }
-  }, [props.date]);
+    console.log(props.attend);
+  }, [props.date, props.attend, props.staffs]);
 
   return (
     <FormControl className={classes.FormControl}>
