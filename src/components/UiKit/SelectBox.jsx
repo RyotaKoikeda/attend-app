@@ -41,7 +41,6 @@ const SelectBox = (props) => {
         setValue("");
       }
     }
-    console.log(props.attend);
   }, [props.date, props.attend, props.staffs]);
 
   return (
