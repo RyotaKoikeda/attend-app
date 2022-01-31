@@ -63,7 +63,6 @@ const AttendEdit = () => {
     <section>
       <div className="container">
         <h2 className="u-text__headline u-text-center">edit</h2>
-        <div className="p-grid__row"></div>
         <div className="p-grid__row">
           <p onClick={() => setDateId(dateId - 7)}>{"<"}</p>
           <p onClick={() => setDateId(dateId + 7)}>{">"}</p>
