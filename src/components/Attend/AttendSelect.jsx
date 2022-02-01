@@ -13,13 +13,13 @@ const useStyles = makeStyles({
   },
 });
 
-const SelectBox = (props) => {
+const AttendSelect = (props) => {
   const classes = useStyles();
   const [value, setValue] = useState("");
 
   const inputDate = (event, id, date) => {
-    let selectId = props.attend[id];
-    let selectDate = { id: date, name: event };
+    const selectId = props.attend[id];
+    const selectDate = { id: date, name: event };
     if (!selectId.find((v) => v.id === date)) {
       selectId.push(selectDate);
     } else {
@@ -63,4 +63,4 @@ const SelectBox = (props) => {
   );
 };
 
-export default SelectBox;
+export default AttendSelect;

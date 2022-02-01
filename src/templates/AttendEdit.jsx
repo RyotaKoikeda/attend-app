@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { StaffCard } from "../components/Staffs";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStaffs, saveAttend } from "../reducks/staffs/operations";
 import { getStaffs } from "../reducks/staffs/selectors";
+import { StaffEditCard } from "../components/Staffs";
+import { AttendSelect } from "../components/Attend";
+import { PrimaryButton } from "../components/UiKit";
 import moment from "moment";
-import { SelectBox } from "../components/UiKit";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -12,7 +13,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { PrimaryButton } from "../components/UiKit";
 
 const AttendEdit = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,8 @@ const AttendEdit = () => {
   const staffs = getStaffs(selector);
 
   const [dateId, setDateId] = useState(0),
-    [attend, setAttend] = useState([]);
+    [attendIn, setAttendIn] = useState([]),
+    [attendOut, setAttendOut] = useState([]);
 
   const categories = [
     { id: "12:00", name: "12:00" },
@@ -55,7 +56,8 @@ const AttendEdit = () => {
 
   useEffect(() => {
     staffs.map((staff) => {
-      setAttend((prevState) => [...prevState, staff.attend]);
+      setAttendIn((prevState) => [...prevState, staff.attendIn]);
+      setAttendOut((prevState) => [...prevState, staff.attendOut]);
     });
   }, [staffs]);
 
@@ -87,7 +89,7 @@ const AttendEdit = () => {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      <StaffCard
+                      <StaffEditCard
                         id={staff.id}
                         name={staff.name}
                         images={staff.images}
@@ -95,13 +97,22 @@ const AttendEdit = () => {
                     </TableCell>
                     {dateList.map((date, id) => (
                       <TableCell key={id} align="right">
-                        <SelectBox
-                          attend={attend}
+                        <AttendSelect
+                          attend={attendIn}
                           staff={staffId}
                           staffs={staffs}
                           label={"出勤時間"}
                           date={date}
-                          required={true}
+                          required={false}
+                          options={categories}
+                        />
+                        <AttendSelect
+                          attend={attendOut}
+                          staff={staffId}
+                          staffs={staffs}
+                          label={"退勤時間"}
+                          date={date}
+                          required={false}
                           options={categories}
                         />
                       </TableCell>
@@ -115,7 +126,9 @@ const AttendEdit = () => {
         <div className="center">
           <PrimaryButton
             label={"出勤情報を保存"}
-            onClick={() => dispatch(saveAttend(staffs.length, staffs, attend))}
+            onClick={() =>
+              dispatch(saveAttend(staffs.length, staffs, attendIn, attendOut))
+            }
           />
         </div>
       </div>

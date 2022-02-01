@@ -35,14 +35,15 @@ export const fetchStaffs = () => {
   };
 };
 
-export const saveStaff = (id, attend, name, images) => {
+export const saveStaff = (id, attendIn, attendOut, name, images) => {
   return async (dispatch) => {
     const timestamp = FirebaseTimestamp.now();
 
     const data = {
       images: images,
       name: name,
-      attend: attend,
+      attendIn: attendIn,
+      attendOut: attendOut,
       updated_at: timestamp,
     };
 
@@ -67,20 +68,23 @@ export const saveStaff = (id, attend, name, images) => {
   };
 };
 
-export const saveAttend = (id, staffs, attend) => {
+export const saveAttend = (id, staffs, attendIn, attendOut) => {
   return async (dispatch) => {
     const timestamp = FirebaseTimestamp.now();
 
     const data = [];
 
-    attend.length = id;
+    attendIn.length = id;
+    attendOut.length = id;
 
-    attend.map((value, id) => {
+    attendIn.map((value, id) => {
       data.push({
-        attend: [],
+        attendIn: [],
+        attendOut: [],
         updated_at: timestamp,
       });
-      data[id].attend = value;
+      data[id].attendIn = value;
+      data[id].attendOut = attendOut[id];
 
       return staffsRef
         .doc(staffs[id].id)

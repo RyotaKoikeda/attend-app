@@ -21,7 +21,8 @@ const Home = () => {
   const staffs = getStaffs(selector);
 
   const [dateId, setDateId] = useState(0),
-    [attend, setAttend] = useState([]),
+    [attendIn, setAttendIn] = useState([]),
+    [attendOut, setAttendOut] = useState([]),
     [email, setEmail] = useState(""),
     [password, setPassword] = useState("");
 
@@ -60,7 +61,8 @@ const Home = () => {
 
   useEffect(() => {
     staffs.map((staff) => {
-      setAttend((prevState) => [...prevState, staff.attend]);
+      setAttendIn((prevState) => [...prevState, staff.attendIn]);
+      setAttendOut((prevState) => [...prevState, staff.attendOut]);
     });
   }, [staffs]);
 
@@ -136,7 +138,15 @@ const Home = () => {
                     {dateList.map((date, id) => (
                       <TableCell key={id} align="right">
                         <AttendText
-                          attend={attend}
+                          attend={attendIn}
+                          label={"出勤時間"}
+                          staff={staffId}
+                          staffs={staffs}
+                          date={date}
+                        />
+                        <AttendText
+                          attend={attendOut}
+                          label={"退勤時間"}
                           staff={staffId}
                           staffs={staffs}
                           date={date}

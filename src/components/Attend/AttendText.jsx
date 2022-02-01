@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 const AttendText = (props) => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    let selectId = props.attend[props.staff];
+    const selectId = props.attend[props.staff];
     if (!selectId) {
     } else {
       const targetValue = selectId.find((v) => v.id === props.date);
@@ -16,7 +19,13 @@ const AttendText = (props) => {
     }
   }, [props.date, props.attend, props.staffs]);
 
-  return <p>{value}</p>;
+  return (
+    <List>
+      <ListItem>
+        <ListItemText primary={value} secondary={props.label} />
+      </ListItem>
+    </List>
+  );
 };
 
 export default AttendText;
