@@ -8,7 +8,7 @@ service cloud.firestore {
       allow delete: if request.auth.uid == userId;
     }
     match /staffs/{staffId} {
-      allow read: if request.auth.uid !=null;
+      allow read: if true;
       allow write: if request.auth.uid !=null;
     }
   }
