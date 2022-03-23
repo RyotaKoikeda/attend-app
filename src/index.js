@@ -5,7 +5,7 @@ import createStore from "./reducks/store/store";
 import { ConnectedRouter } from "connected-react-router";
 import * as History from "history";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { theme } from "./assets/theme";
+import { theme } from "./assets/css/theme";
 import App from "./App";
 
 const history = History.createBrowserHistory();

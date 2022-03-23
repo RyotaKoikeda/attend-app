@@ -7,11 +7,7 @@ import "./assets/css/mixin.scss";
 import "./assets/css/reset.scss";
 
 const App = () => {
-  return (
-    <main className="c-main">
-      <Router />
-    </main>
-  );
+  return <Router />;
 };
 
 export default App;
