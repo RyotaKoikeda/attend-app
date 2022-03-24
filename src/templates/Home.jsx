@@ -108,7 +108,7 @@ const Home = () => {
         </div>
         <div className={styles.top__signin_pass}>
           <p>メールアドレス admin@gmail.com</p>
-          <p>パスワード admin123</p>
+          <p>パスワード Admin0123</p>
         </div>
         <div className="spacer-medium" />
         <div className="page-logo">
