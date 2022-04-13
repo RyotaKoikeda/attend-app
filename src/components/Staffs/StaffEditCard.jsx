@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import NoImage from "../../assets/img/src/no_image.png";
+import NoImage from "../../assets/images/no-img.png";
 import { deleteStaff } from "../../reducks/staffs/operations";
 
 const useStyles = makeStyles((theme) => ({
@@ -57,12 +57,7 @@ const StaffEditCard = (props) => {
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={images[0].path}
-        title=""
-        onClick={() => dispatch(push("/staff/edit/" + props.id))}
-      />
+      <CardMedia className={classes.media} image={images[0].path} title="" onClick={() => dispatch(push("/staff/edit/" + props.id))} />
       <CardContent className={classes.content}>
         <div onClick={() => dispatch(push("/staff/edit/" + props.id))}>
           <Typography color="textSecondary" component="p">
@@ -72,12 +67,7 @@ const StaffEditCard = (props) => {
         <IconButton onClick={handleClick} className={classes.moreIcon}>
           <MoreVertIcon />
         </IconButton>
-        <Menu
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
+        <Menu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
           <MenuItem
             onClick={() => {
               dispatch(push("/staff/edit/" + props.id));

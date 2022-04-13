@@ -62,10 +62,10 @@ const AttendEdit = () => {
   }, [staffs]);
 
   return (
-    <section>
+    <main className="main">
       <div className="container">
-        <h2 className="u-text__headline u-text-center">edit</h2>
-        <div className="p-grid__row">
+        <h2 className="page-title">編集</h2>
+        <div className="flex">
           <p onClick={() => setDateId(dateId - 7)}>{"<"}</p>
           <p onClick={() => setDateId(dateId + 7)}>{">"}</p>
         </div>
@@ -84,37 +84,14 @@ const AttendEdit = () => {
             <TableBody>
               {staffs.length > 0 &&
                 staffs.map((staff, staffId) => (
-                  <TableRow
-                    key={staff.id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
+                  <TableRow key={staff.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                     <TableCell component="th" scope="row">
-                      <StaffEditCard
-                        id={staff.id}
-                        name={staff.name}
-                        images={staff.images}
-                      />
+                      <StaffEditCard id={staff.id} name={staff.name} images={staff.images} />
                     </TableCell>
                     {dateList.map((date, id) => (
                       <TableCell key={id} align="right">
-                        <AttendSelect
-                          attend={attendIn}
-                          staff={staffId}
-                          staffs={staffs}
-                          label={"出勤時間"}
-                          date={date}
-                          required={false}
-                          options={categories}
-                        />
-                        <AttendSelect
-                          attend={attendOut}
-                          staff={staffId}
-                          staffs={staffs}
-                          label={"退勤時間"}
-                          date={date}
-                          required={false}
-                          options={categories}
-                        />
+                        <AttendSelect attend={attendIn} staff={staffId} staffs={staffs} label={"出勤時間"} date={date} required={false} options={categories} />
+                        <AttendSelect attend={attendOut} staff={staffId} staffs={staffs} label={"退勤時間"} date={date} required={false} options={categories} />
                       </TableCell>
                     ))}
                   </TableRow>
@@ -122,17 +99,12 @@ const AttendEdit = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <div className="module-spacer--small" />
+        <div className="spacer-small" />
         <div className="center">
-          <PrimaryButton
-            label={"出勤情報を保存"}
-            onClick={() =>
-              dispatch(saveAttend(staffs.length, staffs, attendIn, attendOut))
-            }
-          />
+          <PrimaryButton label={"出勤情報を保存"} onClick={() => dispatch(saveAttend(staffs.length, staffs, attendIn, attendOut))} />
         </div>
       </div>
-    </section>
+    </main>
   );
 };
 
