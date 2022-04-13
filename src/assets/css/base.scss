@@ -117,7 +117,12 @@ img {
   padding: 32px 16px;
   border: 1px solid #c0c0c0;
   border-radius: 12px;
-  box-shadow: 0px 1px 2px -1px rgb(0 0 0 / 20%), 0px 1px 3px 0px rgb(0 0 0 / 14%), 0px 2px 2px 0px rgb(0 0 0 / 12%);
+  box-shadow: 0px 1px 2px -1px rgb(0 0 0 / 20%),
+    0px 1px 3px 0px rgb(0 0 0 / 14%), 0px 2px 2px 0px rgb(0 0 0 / 12%);
+}
+
+.section-table {
+  min-width: 1200px;
 }
 
 .edit-images {
@@ -143,4 +148,20 @@ img {
       object-position: center;
     }
   }
+}
+
+.arrowLeft {
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  width: 60px;
+  transform: translateY(-50%) scale(-1, 1);
+}
+
+.arrowRight {
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  width: 60px;
+  transform: translateY(-50%);
 }

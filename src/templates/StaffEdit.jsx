@@ -44,12 +44,26 @@ const StaffEdit = () => {
     <main className="main">
       <div className="container">
         <h2 className="page-title">スタッフの登録・編集</h2>
-        <div className="section-container">
+        <div className="form-wrap">
           <ImageArea images={images} setImages={setImages} />
-          <TextInput fullWidth={true} label={"スタッフ名"} multiline={false} required={true} onChange={inputName} rows={1} value={name} type={"text"} />
-          <div className="spacer-small" />
+          <TextInput
+            fullWidth={true}
+            label={"スタッフ名"}
+            multiline={false}
+            required={true}
+            onChange={inputName}
+            rows={1}
+            value={name}
+            type={"text"}
+          />
+          <div className="spacer-medium" />
           <div className="center">
-            <PrimaryButton label={"商品情報を保存"} onClick={() => dispatch(saveStaff(id, attendIn, attendOut, name, images))} />
+            <PrimaryButton
+              label={"商品情報を保存"}
+              onClick={() =>
+                dispatch(saveStaff(id, attendIn, attendOut, name, images))
+              }
+            />
           </div>
         </div>
       </div>

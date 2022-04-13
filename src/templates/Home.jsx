@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import styles from "../assets/css/Top.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { PrimaryButton, TextInput } from "../components/UiKit";
 import { AttendText } from "../components/Attend";
@@ -72,13 +71,13 @@ const Home = () => {
   }, [staffs]);
 
   return (
-    <main className={`${styles.top} main`}>
+    <main className="main">
       <div className="container">
         <div className="page-logo">
           <LockIcon />
         </div>
         <h2 className="page-title">サインイン</h2>
-        <div className={styles.top__signin}>
+        <div className="form-wrap">
           <TextInput
             fullWidth={true}
             label={"メールアドレス"}
@@ -100,16 +99,19 @@ const Home = () => {
             onChange={inputPassword}
           />
         </div>
-        <div className={styles.top__signin_button}>
+        <div className="center">
           <PrimaryButton
             label={"サインイン"}
             onClick={() => dispatch(signIn(email, password))}
           />
         </div>
-        <div className={styles.top__signin_pass}>
+        <div className="spacer-small" />
+        <div className="center">
           <p>メールアドレス admin@gmail.com</p>
+          <div className="spacer-small" />
           <p>パスワード Admin0123</p>
         </div>
+        <div className="spacer-small" />
         <div className="spacer-medium" />
         <div className="page-logo">
           <ScheduleIcon />
@@ -117,7 +119,7 @@ const Home = () => {
         <h2 className="page-title">出勤情報</h2>
         <div className="section-container">
           <TableContainer component={Paper}>
-            <Table className={styles.top_table} aria-label="simple table">
+            <Table className="section-table" aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
@@ -165,12 +167,12 @@ const Home = () => {
               </TableBody>
             </Table>
           </TableContainer>
-          <div className={styles.top_iconLeft}>
+          <div className="arrowLeft">
             <IconButton onClick={() => setDateId(dateId - 7)}>
               <img src={arrow} alt="arrow" />
             </IconButton>
           </div>
-          <div className={styles.top_iconRight}>
+          <div className="arrowRight">
             <IconButton onClick={() => setDateId(dateId + 7)}>
               <img src={arrow} alt="arrow" />
             </IconButton>
