@@ -73,6 +73,10 @@ img {
   height: 32px;
 }
 
+.spacer-large {
+  height: 60px;
+}
+
 .container {
   width: 100%;
   max-width: 1280px;
@@ -96,6 +100,7 @@ img {
 .page-title {
   font-size: 24px;
   text-align: center;
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック", "Yu Gothic", sans-serif;
 }
 
 .section-wrap {
@@ -104,6 +109,7 @@ img {
 
 .section-title {
   font-size: 20px;
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック", "Yu Gothic", sans-serif;
 }
 
 .page-logo {
@@ -117,8 +123,7 @@ img {
   padding: 32px 16px;
   border: 1px solid #c0c0c0;
   border-radius: 12px;
-  box-shadow: 0px 1px 2px -1px rgb(0 0 0 / 20%),
-    0px 1px 3px 0px rgb(0 0 0 / 14%), 0px 2px 2px 0px rgb(0 0 0 / 12%);
+  box-shadow: 0px 1px 2px -1px rgb(0 0 0 / 20%), 0px 1px 3px 0px rgb(0 0 0 / 14%), 0px 2px 2px 0px rgb(0 0 0 / 12%);
 }
 
 .section-table {
