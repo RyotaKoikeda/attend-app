@@ -10,7 +10,6 @@ const Router = () => {
       <Auth>
         <Route exact path="/attend/edit" component={AttendEdit} />
         <Route path="/staff/edit(/:id)?" component={StaffEdit} />
-        <Route exact path="/signup" component={SignUp} />
       </Auth>
     </Switch>
   );
