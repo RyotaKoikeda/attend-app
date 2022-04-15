@@ -59,7 +59,7 @@ export const saveStaff = (id, attendIn, attendOut, name, images) => {
       .set(data, { merge: true })
       .then(() => {
         alert("スタッフを追加しました");
-        dispatch(push("/attend/"));
+        dispatch(push("/"));
         window.location.reload();
       })
       .catch((error) => {
@@ -100,13 +100,15 @@ export const saveAttend = (id, staffs, attendIn, attendOut) => {
                 staffList.push(staff);
               });
               dispatch(fetchStaffsAction(staffList));
+            })
+            .then(() => {
+              dispatch(push("/"));
+              window.location.reload();
             });
         })
         .catch((error) => {
           throw new Error(error);
         });
     });
-
-    dispatch(push("/attend/"));
   };
 };
